@@ -30,7 +30,7 @@ a.out
 
 # temporary files    #
 ######################
-temp.cpp
+temp*
 
 # OS generated files #
 ######################
