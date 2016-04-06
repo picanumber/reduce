@@ -174,7 +174,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Reduce">Reduce<a class="anchor-link" href="#Reduce">&#182;</a></h1><h2 id="Nick-Athanasiou">Nick Athanasiou<a class="anchor-link" href="#Nick-Athanasiou">&#182;</a></h2><p>Copyright © 2016 Nick Athanasiou</p>
+<h1 id="Reduce">Reduce<a class="anchor-link" href="#Reduce">&#182;</a></h1><h3 id="Nick-Athanasiou">Nick Athanasiou<a class="anchor-link" href="#Nick-Athanasiou">&#182;</a></h3><p>Copyright © 2016 Nick Athanasiou</p>
 <p>Distributed under the Apache License Version 2.0 (See accompanying file LICENSE or <a href="http://www.apache.org/licenses/LICENSE-2.0.txt">here</a>)</p>
 
 </div>
@@ -185,10 +185,15 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h2><ul>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h2><ol>
 <li><a href="#introduction"><strong>Introduction</strong></a><ul>
 <li>The functional genome of reduce</li>
-<li>C++ fold expressions</li>
+<li>C++ fold expressions<ul>
+<li>Syntax</li>
+<li>Identity elements</li>
+<li>Examples</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#rationale"><strong>Rationale</strong></a><ul>
@@ -204,7 +209,7 @@ div#notebook {
 </ul>
 </li>
 <li><a href="#examples"><strong>Examples</strong></a></li>
-</ul>
+</ol>
 
 </div>
 </div>
@@ -215,7 +220,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='introduction'></a></p>
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p><code>Reduce</code> is a header only library that provides fold expressions for <strong>arbitrary callables</strong>. Properties of the resulting expressions include:</p>
+<h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h2><p><code>Reduce</code> is a header only library that provides fold expressions for <strong>arbitrary callables</strong>. Properties of the resulting expressions include:</p>
 <ul>
 <li>Compile time evaluation (if the callables involved have such an ability)</li>
 <li>Lazy evaluation (we can step through intermediate computations in a generator fashion)</li>
@@ -230,7 +235,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-functional-genome-of-reduce">The functional genome of reduce<a class="anchor-link" href="#The-functional-genome-of-reduce">&#182;</a></h3><p>The concept of <em>reducing</em> is central to the "<em>programming experience</em>" in functional languages. A formal definition would go like <a href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29">this</a>:</p>
+<h3 id="1.1-The-functional-genome-of-reduce">1.1 The functional genome of reduce<a class="anchor-link" href="#1.1-The-functional-genome-of-reduce">&#182;</a></h3><p>The concept of <em>reducing</em> is central to the "<em>programming experience</em>" in functional languages. A formal definition would go like <a href="https://en.wikipedia.org/wiki/Fold_%28higher-order_function%29">this</a>:</p>
 <blockquote><p>In functional programming, <strong>fold</strong> – also known variously as <strong>reduce, accumulate, aggregate, compress</strong>, or <strong>inject</strong> – refers to a family of <strong>higher-order functions</strong> that analyze a recursive data structure and through use of a given combining operation, recombine the results of recursively processing its constituent parts, building up a return value.</p>
 </blockquote>
 <p>To understand this definition, here's some info on the terminology:</p>
@@ -341,7 +346,11 @@ main = do
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="C++-fold-expressions">C++ fold expressions<a class="anchor-link" href="#C++-fold-expressions">&#182;</a></h3>
+<h3 id="1.2-C++-fold-expressions">1.2 C++ fold expressions<a class="anchor-link" href="#1.2-C++-fold-expressions">&#182;</a></h3><p>Up until the "1z" version, C++ expressed the reduction logic through the standard library function <a href="http://en.cppreference.com/w/cpp/algorithm/accumulate"><code>std::accumulate</code></a>. Common knowledge indicates that <code>accumulate</code> was highly underestimated and it's use decayed to the mandane task of summing, with a choice for a custom binary operator, the contents of a container. While this is just a fragment of its "abilities", the truth is that <code>accumulate</code> cannot express folding in compile time contexts, the pure expression logic underlying reductions and handle variadicness of input.</p>
+<p>C++1z ammends this by adding support for fold expressions. According to the related <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4295.html">proposal</a>:</p>
+<blockquote><p>A fold expression performs a fold of a template parameter pack ([temp.variadic]) over a binary operator.</p>
+</blockquote>
+
 </div>
 </div>
 </div>
@@ -350,8 +359,333 @@ main = do
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Syntax">Syntax<a class="anchor-link" href="#Syntax">&#182;</a></h3><p>Let <code>"e"</code> $= e_1, e_2, \dotso, e_n$ be an expression that contains an unexpanded parameter pack and "<big>⊗</big>" the fold operator, then fold expressions have the form:</p>
+<ul>
+<li><p>Unary <strong>left folds</strong></p>
+<p>$(\dotso\; \otimes\; e)$</p>
+<p>which expands to $ (((e_1 \otimes e_2) \dotso ) \otimes e_n)$</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Unary <strong>right folds </strong></p>
+<p>$(e\; \otimes\; \dotso)$</p>
+<p>which expands to $(e_1 \otimes ( \dotso (e_{n-1} \otimes e_n)))$</p>
+</li>
+</ul>
+<hr>
+<p>If we add a <strong>non pack argument</strong> on the <em>dots' side</em> of each of the above we get their binary versions that have identical expansion behavior:</p>
+<ul>
+<li><p>Binary <strong>left folds</strong></p>
+<p>$(a \otimes\; \dotso\; \otimes\; e)$</p>
+<p>which expands to $ (((a \otimes e_1) \dotso ) \otimes e_n)$</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Binary <strong>right folds </strong></p>
+<p>$(e\; \otimes\; \dotso\; \otimes\; a)$</p>
+<p>which expands to $(e_1 \otimes ( \dotso (e_n \otimes a)))$</p>
+</li>
+</ul>
+<hr>
+<p>The "<big>⊗</big>" operator can be one of:</p>
+<div class="highlight"><pre><span class="o">+</span>  <span class="o">-</span>  <span class="o">*</span>  <span class="o">/</span>  <span class="o">%</span>  <span class="o">^</span>  <span class="o">&amp;</span>  <span class="o">|</span>  <span class="o">~</span>  <span class="o">=</span>  <span class="o">&lt;</span>  <span class="o">&gt;</span>  <span class="o">&lt;&lt;</span>  <span class="o">&gt;&gt;</span>
+<span class="o">+=</span>  <span class="o">-=</span>  <span class="o">*=</span>  <span class="o">/=</span>  <span class="o">%=</span>  <span class="o">^=</span>  <span class="o">&amp;=</span>  <span class="o">|=</span>  <span class="o">&lt;&lt;=</span>  <span class="o">&gt;&gt;=</span>
+<span class="o">==</span>  <span class="o">!=</span>  <span class="o">&lt;=</span>  <span class="o">&gt;=</span>  <span class="o">&amp;&amp;</span>  <span class="o">||</span>  <span class="p">,</span>  <span class="p">.</span><span class="o">*</span>  <span class="o">-&gt;*</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Identity-elements">Identity elements<a class="anchor-link" href="#Identity-elements">&#182;</a></h3><p>The fold of an empty parameter pack evaluates to a specific value. The choice of value depends on the operator. The set of operators and their empty expansions are in the table below.</p>
+<table>
+<thead><tr>
+<th>Operator</th>
+<th>Value when parameter pack is empty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$*$</td>
+<td>1</td>
+</tr>
+<tr>
+<td>$+$</td>
+<td>0</td>
+</tr>
+<tr>
+<td>$&$</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>$\mid$</td>
+<td>0</td>
+</tr>
+<tr>
+<td>$&&$</td>
+<td>true</td>
+</tr>
+<tr>
+<td>$\parallel$</td>
+<td>false</td>
+</tr>
+<tr>
+<td>$,$</td>
+<td>void()</td>
+</tr>
+</tbody>
+</table>
+<p>If a fold of an empty parameter pack is produced for any other operator, the program is ill-formed</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h3><p><small>_</small></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="c1">/// Summing the contents of an array at compile time</span>
+
+<span class="cp">#include &lt;array&gt;</span>
+<span class="cp">#include &lt;utility&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
+
+<span class="k">namespace</span> <span class="n">detail</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+    <span class="k">constexpr</span> <span class="k">auto</span> <span class="n">sum_</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">args</span> <span class="o">+</span> <span class="p">...);</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">...</span> <span class="n">Is</span><span class="o">&gt;</span>
+    <span class="k">constexpr</span> <span class="n">T</span> <span class="n">sum_impl</span><span class="p">(</span><span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">,</span> <span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">Is</span><span class="p">...</span><span class="o">&gt;</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">sum_</span><span class="p">(</span><span class="n">get</span><span class="o">&lt;</span><span class="n">Is</span><span class="o">&gt;</span><span class="p">(</span><span class="n">arr</span><span class="p">)...);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="k">constexpr</span> <span class="n">T</span> <span class="n">sum</span><span class="p">(</span><span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="n">arr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">detail</span><span class="o">::</span><span class="n">sum_impl</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="p">{});</span>
+<span class="p">}</span> 
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">constexpr</span> <span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">arr1</span><span class="p">{</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">};</span>
+    <span class="k">constexpr</span> <span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="o">&gt;</span> <span class="n">arr2</span><span class="p">{</span> <span class="p">};</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">sum</span><span class="p">(</span><span class="n">arr1</span><span class="p">)</span><span class="o">&gt;</span><span class="p">{}</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">sum</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span><span class="o">&gt;</span><span class="p">{}</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Output : ['7', '0']</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="c1">// iterating over different types</span>
+
+<span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="k">struct</span> <span class="n">Window</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">show</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;showing Window</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span> <span class="n">win</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Widget</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">show</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;showing Widget</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span> <span class="n">wid</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Toolbar</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">show</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;showing Toolbar</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span> <span class="n">tlb</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">printer</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">show</span><span class="p">(),</span> <span class="p">...);</span> <span class="p">};</span>
+
+    <span class="n">printer</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">wid</span><span class="p">,</span> <span class="n">tlb</span><span class="p">);</span>
+    <span class="n">printer</span><span class="p">();</span> <span class="c1">// remember void() ? </span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Output: ['showing Window', 'showing Widget', 'showing Toolbar']</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="c1">// a for_each lambda</span>
+
+<span class="cp">#include &lt;iostream&gt;</span>
+
+<span class="k">struct</span> <span class="n">Printer</span> 
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> 
+    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">arg</span><span class="p">)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">arg</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">ForEach</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="n">fun</span><span class="p">,</span> <span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="p">{</span> 
+        <span class="p">(...,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fun</span><span class="p">)(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)));</span>
+    <span class="p">};</span>
+
+    <span class="n">ForEach</span><span class="p">(</span><span class="n">Printer</span><span class="p">{},</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&quot; a loaf is better than &quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot; bread&quot;</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Output: ['0.5 a loaf is better than 0 bread']</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span class="c1">// a modern summing style - showcasing the unfolding properties of std::apply</span>
+
+<span class="cp">#include &lt;array&gt;</span>
+<span class="cp">#include &lt;tuple&gt;</span>
+<span class="cp">#include &lt;utility&gt;</span>
+<span class="cp">#include &lt;iostream&gt;</span>
+<span class="cp">#include &lt;type_traits&gt;</span>
+
+<span class="k">namespace</span> <span class="n">cpp17</span>
+<span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span> <span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="n">class</span><span class="p">...</span> <span class="n">ArgTypes</span><span class="o">&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">result_of_t</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">ArgTypes</span><span class="o">&amp;&amp;</span><span class="p">...)</span><span class="o">&gt;</span> <span class="n">invoke</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">,</span> <span class="n">ArgTypes</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">);</span>
+
+    <span class="k">namespace</span> <span class="n">detail</span> 
+    <span class="p">{</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Tuple</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">...</span> <span class="n">I</span><span class="o">&gt;</span>
+        <span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="k">auto</span><span class="p">)</span> <span class="n">apply_impl</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tuple</span><span class="o">&amp;&amp;</span> <span class="n">t</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">I</span><span class="p">...</span><span class="o">&gt;</span><span class="p">)</span> 
+        <span class="p">{</span>
+<span class="cp">#if 1</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">))(</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">))...);</span>
+<span class="cp">#else</span>
+            <span class="k">return</span> <span class="nf">invoke</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">))...);</span>
+<span class="cp">#endif </span><span class="c1">// TODO: Elaborate on the inconsistency of invoke not being constexpr</span>
+        <span class="p">}</span>
+    <span class="p">}</span>  
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Tuple</span><span class="o">&gt;</span>
+    <span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="k">auto</span><span class="p">)</span> <span class="n">apply</span><span class="p">(</span><span class="n">F</span><span class="o">&amp;&amp;</span> <span class="n">f</span><span class="p">,</span> <span class="n">Tuple</span><span class="o">&amp;&amp;</span> <span class="n">t</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">detail</span><span class="o">::</span><span class="n">apply_impl</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;</span><span class="p">(</span><span class="n">f</span><span class="p">),</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">tuple_size</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">decay_t</span><span class="o">&lt;</span><span class="n">Tuple</span><span class="o">&gt;&gt;</span><span class="p">{}</span><span class="o">&gt;</span><span class="p">{});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Summer</span> 
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span> <span class="k">constexpr</span> <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">args</span> <span class="o">+</span> <span class="p">...);</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span>        <span class="n">arr</span><span class="p">{</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">};</span>
+    <span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">tup</span><span class="p">{</span>   <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>   <span class="p">};</span> 
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Array sum : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">cpp17</span><span class="o">::</span><span class="n">apply</span><span class="p">(</span><span class="n">Summer</span><span class="p">{},</span> <span class="n">arr</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Tuple sum : &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">cpp17</span><span class="o">::</span><span class="n">apply</span><span class="p">(</span><span class="n">Summer</span><span class="p">{},</span> <span class="n">tup</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Output: ['Array sum : 6', 'Tuple sum : 6']</p>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='rationale'></a></p>
-<h2 id="Rationale">Rationale<a class="anchor-link" href="#Rationale">&#182;</a></h2>
+<h2 id="2.-Rationale">2. Rationale<a class="anchor-link" href="#2.-Rationale">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -361,7 +695,7 @@ main = do
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='manual'></a></p>
-<h2 id="Manual">Manual<a class="anchor-link" href="#Manual">&#182;</a></h2>
+<h2 id="3.-User-Manual">3. User Manual<a class="anchor-link" href="#3.-User-Manual">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -371,7 +705,7 @@ main = do
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='Examples'></a></p>
-<h2 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h2>
+<h2 id="4.-Examples">4. Examples<a class="anchor-link" href="#4.-Examples">&#182;</a></h2>
 </div>
 </div>
 </div>
