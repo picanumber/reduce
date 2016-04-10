@@ -12,9 +12,9 @@
 
 namespace vtu
 {
+	using std::size_t;
 	namespace detail
 	{
-		using std::size_t;
 		template <size_t I>
 		struct visit_impl // TODO: Elaborate on how this is an "unrolled" switch
 		{
@@ -84,6 +84,8 @@ namespace vtu
 
 namespace gut
 {
+	using std::size_t;
+
 	template <class T>
 	struct remove_rvalue_reference
 	{
@@ -102,6 +104,9 @@ namespace gut
 	template <class F, class... Ts>
 	using strip_rr_result_t =
 	    remove_rvalue_reference_t<std::result_of_t<F(Ts...)>>;
+
+	template <size_t I1, size_t I2>
+    constexpr size_t max_z = I1 > I2 ? I1 : I2; 
 }
 // ~ gut
 

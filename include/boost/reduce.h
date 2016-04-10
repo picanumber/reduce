@@ -4,14 +4,11 @@
 #include <tuple>
 #include <utility>
 #include <iterator>
-#include <iostream> // only for debug purposes
 #include <type_traits>
 
 #include "fold_utilities.h"
+#include "tuple_slice.h"
 
-// TODO: ensure I'm actually moving
-// TODO: do the examples with both right and left fold
-// TODO: explaing the "method specifiers" alternative to clone()
 namespace fld
 {
 	namespace detail
@@ -65,9 +62,39 @@ namespace fld
 			using state_t = gut::strip_rr_result_t<F, T1, T0>;
 		};
 
+		template <class... Ts>
+		struct eval_impl<O_x<Ts...>&> 
+		{
+			template <class F, class Nodes, class State>
+			constexpr inline static decltype(auto)
+			apply(F&& fun, Nodes&& nodes, size_t pos, State&& state)
+			{
+				return vtu::call_with_tuple_element_first(fw(fun), fw(nodes),
+				                                          pos, fw(state));
+			}
+
+			template <class F, class T0, class T1>
+			using state_t = gut::strip_rr_result_t<F, T1, T0>;
+		};
+
 #if 0
 		template <class... Ts>
 		struct eval_impl<x_O<Ts...>>
+		{
+			template <class F, class Nodes, class State>
+			constexpr inline static decltype(auto)
+			apply(F&& fun, Nodes&& nodes, size_t pos, State&& state)
+			{
+				return vtu::call_with_tuple_element_last(fw(fun), fw(nodes),
+														 pos, fw(state));
+			}
+
+			template <class F, class T0, class T1>
+			using state_t = gut::strip_rr_result_t<F, T0, T1>;
+		};
+
+        template <class... Ts>
+		struct eval_impl<x_O<Ts...>&>
 		{
 			template <class F, class Nodes, class State>
 			constexpr inline static decltype(auto)
@@ -194,9 +221,12 @@ namespace fld
 
 				iterator& operator++()
 				{
+					if (std::tuple_size<tuple<Ts...>>::value > _pos + 1)
+					{
+						_state = eval<F, tuple<Ts...>>::apply(
+						    _func, gut::tuple_slice<1>(_nodes), _pos, _state);
+					}
 					++_pos;
-					_state = eval<F, tuple<Ts...>>::apply(_func, _nodes, _pos,
-					                                      _state);
 
 					return *this;
 				}
@@ -215,7 +245,7 @@ namespace fld
 			iterator<T, F> end(T& state, F& func)
 			{
 				return iterator<T, F>(state, nodes, func,
-				                      sizeof...(Ts) + (sizeof...(Ts) ? 0 : 1));
+				                      gut::max_z<1, sizeof...(Ts)>);
 			}
 
 			template <class T, class F>
@@ -223,8 +253,8 @@ namespace fld
 			{
 				for (size_t i(1); i < sizeof...(Ts); ++i)
 				{
-					state =
-					    eval<F, tuple<Ts...>>::apply(fw(fun), nodes, i, state);
+					state = eval<F, tuple<Ts...>>::apply(
+					    fw(fun), gut::tuple_slice<1>(nodes), i - 1, state);
 				}
 
 				return state;
@@ -252,8 +282,8 @@ namespace fld
 			{
 			}
 
-			inline iterator begin() { return _expr.begin(_state, _reducer); }
-			inline iterator end() { return _expr.end(_state, _reducer); }
+			inline iterator begin()& { return _expr.begin(_state, _reducer); }
+			inline iterator end() & { return _expr.end(_state, _reducer); }
 
 			constexpr decltype(auto) yield()
 			{
