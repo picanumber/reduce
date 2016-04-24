@@ -1,0 +1,18 @@
+// --------------------------------------------------------
+// 1. the presentation is an ipython notebook, to run it call 
+// --------------------------------------------------------
+$ jupyter notebook presentation.ipynb
+
+// --------------------------------------------------------
+// 2. to convert the notebook into a node.js presentation run
+// --------------------------------------------------------
+$ jupyter nbconvert presentation.ipynb --to slides --post serve
+
+// --------------------------------------------------------
+// 3. runable code in the notebook uses the following ipytnon magics (add them to 
+// your ipython startup profile - the respective compilers must be present)
+// --------------------------------------------------------
+clang++magic.py
+haskell_magic.py
+g++magic.py
+
