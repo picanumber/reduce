@@ -1,3 +1,3 @@
 # reduce
 
-.. more to come
+... more to come
