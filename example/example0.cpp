@@ -208,8 +208,14 @@ int main()
 	};
 
 	std::cout << compose(f1, f2, f3)(2, 3) << std::endl;
+	auto cfs = compose(f1, f2, f3);
+	std::cout << cfs(2, 3) << std::endl;
+
+
 	std::cout << curry(f4, 2)(1, 2) << std::endl;
 	std::cout << curry(f4, 2, 1)(1) << std::endl;
-}
 
+    auto ccfs = compose(f1, f2, curry(f4, 2, 1)); 
+    std::cout << ccfs(1) << std::endl;
+}
 
