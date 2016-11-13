@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <iostream>
 #include <sstream>
@@ -137,51 +138,23 @@ namespace fld
 	}
 }
 
-// 4. -------------------------------------------------------------------------
 template <class T>
-std::string Stringify(T const& value)
-{
-	std::stringstream ss;
-	ss << value;
-	return ss.str();
-}
+using perfect_capture_t =
+    std::conditional_t<std::is_lvalue_reference<T>::value,
+                       std::reference_wrapper<std::remove_reference_t<T>>, T>;
 
-struct Join
-{
-	template <class T1, class T2>
-	std::string operator()(T1 const& lhs, T2 const& rhs)
-	{
-		return Stringify(lhs) + Stringify(rhs);
-	}
-};
-
-struct Vettore
-{
-	std::vector<int> operator()(int a, int b) { return {a, b}; }
-
-	std::vector<int> operator()(int b, std::vector<int> const& a)
-	{
-		auto ret(a);
-		ret.insert(ret.begin(), b);
-		return ret;
-	}
-};
-
-struct Max
-{
-	template <class T1, class T2>
-	constexpr decltype(auto) operator()(T1&& lhs, T2&& rhs)
-	{
-		return lhs > rhs ? std::forward<T1>(lhs) : std::forward<T2>(rhs);
-	}
-};
-
-struct comp
+struct Comp
 {
 	template <class F1, class F2>
-	auto operator()(F1 lhs, F2 rhs)
+	auto operator()(F1&& lhs, F2&& rhs)
 	{
-		return [=](auto a) { return lhs(rhs(a)); };
+		return [
+			lhs = perfect_capture_t<F1>(std::forward<F1>(lhs)),
+			rhs = perfect_capture_t<F2>(std::forward<F2>(rhs))
+		](auto&&... args)
+		{
+			return lhs(rhs(std::forward<decltype(args)>(args)...));
+		};
 	}
 };
 
@@ -189,25 +162,54 @@ template <class... Ts>
 auto compose(Ts&&... args)
 {
 	using fld::Op;
-	return (Op<comp>(args) + ...).give();
+	return (Op<Comp>(std::forward<Ts>(args)) + ...).give();
+}
+
+struct Curry
+{
+	template <class F1, class F2>
+	auto operator()(F1&& lhs, F2&& rhs)
+	{
+		return [
+			lhs = perfect_capture_t<F1>(std::forward<F1>(lhs)),
+			rhs = perfect_capture_t<F2>(std::forward<F2>(rhs))
+		](auto&&... args)
+		{
+			return lhs(rhs, std::forward<decltype(args)>(args)...);
+		};
+	}
+};
+
+template <class... Ts>
+auto curry(Ts&&... args)
+{
+	using fld::Op;
+	return (... + Op<Curry>(std::forward<Ts>(args))).give();
 }
 // ~ --------------------------------------------------------------------------
 
 int main()
 {
-	auto by2 = [](auto a) {
-		std::cout << "by2\n";
+	auto f1 = [](auto a) {
+		std::cout << "f1\n";
 		return 2 * a;
 	};
-	auto by3 = [](auto a) {
-		std::cout << "by3\n";
+	auto f2 = [](auto a) {
+		std::cout << "f2\n";
 		return 3 * a;
 	};
-	auto by4 = [](auto a) {
-		std::cout << "by4\n";
-		return 3 * a;
+	auto f3 = [](auto a, auto b) {
+		std::cout << "f3\n";
+		return b * a;
+	};
+	auto f4 = [](auto a, auto b, auto c) {
+		std::cout << "f4\n";
+		return c * b * a;
 	};
 
-	std::cout << compose(by2, by3, by4)(2) << std::endl;
+	std::cout << compose(f1, f2, f3)(2, 3) << std::endl;
+	std::cout << curry(f4, 2)(1, 2) << std::endl;
+	std::cout << curry(f4, 2, 1)(1) << std::endl;
 }
+
 
