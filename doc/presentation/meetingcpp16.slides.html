@@ -11830,37 +11830,8 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Reduce">Reduce<a class="anchor-link" href="#Reduce">&#182;</a></h1><h2 id="From-Functional-and-Heterogeneous-computing-to-C++1z-fold-expressions">From Functional and Heterogeneous computing to C++1z fold expressions<a class="anchor-link" href="#From-Functional-and-Heterogeneous-computing-to-C++1z-fold-expressions">&#182;</a></h2><p><img src="pics/Cloud3.png" alt="blob"></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="whoami">whoami<a class="anchor-link" href="#whoami">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nick-Athanasiou">Nick Athanasiou<a class="anchor-link" href="#Nick-Athanasiou">&#182;</a></h1><p><small>__</small></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="pics/beta_cae.jpg" alt="beta"></p>
-<h2 id="BETA-CAE-Systems-S.A">BETA CAE Systems S.A<a class="anchor-link" href="#BETA-CAE-Systems-S.A">&#182;</a></h2><h3 id="https://ngathanasiou.wordpress.com/"><a href="https://ngathanasiou.wordpress.com/">https://ngathanasiou.wordpress.com/</a><a class="anchor-link" href="#https://ngathanasiou.wordpress.com/">&#182;</a></h3>
+<h1 id="Reduce">Reduce<a class="anchor-link" href="#Reduce">&#182;</a></h1><h2 id="From-Functional-programming-to-C++17-fold-expressions">From Functional programming to C++17 fold expressions<a class="anchor-link" href="#From-Functional-programming-to-C++17-fold-expressions">&#182;</a></h2><p><img src="pics/Cloud3.png" alt="blob"></p>
+<h2 id="Nick-Athanasiou">Nick Athanasiou<a class="anchor-link" href="#Nick-Athanasiou">&#182;</a></h2>
 </div>
 </div>
 </div></section></section><section><section>
@@ -11930,8 +11901,9 @@ a.anchor-link {
     <span class="k">class</span> <span class="nc">InputIterator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">OutputIterator</span><span class="p">,</span> 
     <span class="k">class</span> <span class="nc">UnaryOperator</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Pred</span>
 <span class="o">&gt;</span>
-<span class="n">OutputIterator</span> <span class="n">transform_if</span><span class="p">(</span><span class="n">InputIterator</span> <span class="n">first1</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last1</span><span class="p">,</span>
-                            <span class="n">OutputIterator</span> <span class="n">result</span><span class="p">,</span> <span class="n">UnaryOperator</span> <span class="n">op</span><span class="p">,</span> <span class="n">Pred</span> <span class="n">pred</span><span class="p">)</span>
+<span class="n">OutputIterator</span> <span class="n">transform_if</span><span class="p">(</span>
+    <span class="n">InputIterator</span> <span class="n">first1</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">last1</span><span class="p">,</span>
+    <span class="n">OutputIterator</span> <span class="n">result</span><span class="p">,</span> <span class="n">UnaryOperator</span> <span class="n">op</span><span class="p">,</span> <span class="n">Pred</span> <span class="n">pred</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">first1</span> <span class="o">!=</span> <span class="n">last1</span><span class="p">)</span> 
     <span class="p">{</span>
@@ -12449,14 +12421,14 @@ main = do
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
 
 <span class="k">def</span> <span class="nf">fizz_buzz</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; solution to the fizz buzz puzzle</span>
-<span class="sd">        demonstration of the separation of concerns</span>
+<span class="sd">        modularity is still not optimal</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="k">if</span> <span class="mi">0</span> <span class="o">==</span> <span class="p">(</span><span class="n">item</span> <span class="o">%</span> <span class="mi">3</span><span class="p">):</span> <span class="n">a</span> <span class="o">+=</span> <span class="s1">&#39;Fizz&#39;</span>
@@ -12477,7 +12449,7 @@ main = do
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13027,26 +12999,6 @@ Out filter(In first, In last, Out out, P pred) {
 
 </div>
 </div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>examples in Haskell</p>
-<hr>
-<div class="highlight"><pre><span></span><span class="nf">mapping</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">b</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span>
-<span class="nf">mapping</span> <span class="n">f</span> <span class="n">xf</span> <span class="n">r</span> <span class="n">a</span> <span class="ow">=</span> <span class="n">xf</span> <span class="n">r</span> <span class="p">(</span><span class="n">f</span> <span class="n">a</span><span class="p">)</span>
-
-<span class="nf">filtering</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span>
-<span class="nf">filtering</span> <span class="n">p</span> <span class="n">xf</span> <span class="n">r</span> <span class="n">a</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">p</span> <span class="n">a</span> <span class="kr">then</span> <span class="n">xf</span> <span class="n">r</span> <span class="n">a</span> <span class="kr">else</span> <span class="n">r</span>
-
-<span class="nf">flatmapping</span> <span class="ow">::</span> <span class="p">(</span><span class="n">a</span> <span class="ow">-&gt;</span> <span class="p">[</span><span class="n">b</span><span class="p">])</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">r</span> <span class="ow">-&gt;</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="n">r</span><span class="p">)</span>
-<span class="nf">flatmapping</span> <span class="n">f</span> <span class="n">xf</span> <span class="n">r</span> <span class="n">a</span> <span class="ow">=</span> <span class="n">foldl</span> <span class="n">xf</span> <span class="n">r</span> <span class="p">(</span><span class="n">f</span> <span class="n">a</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -13368,7 +13320,7 @@ Out filter(In first, In last, Out out, P pred) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='c_1z_folds'></a></p>
-<h1 id="4.-C++1z-fold-expressions">4. C++1z fold expressions<a class="anchor-link" href="#4.-C++1z-fold-expressions">&#182;</a></h1><p><a href="#contents">-</a></p>
+<h1 id="4.-C++17-fold-expressions">4. C++17 fold expressions<a class="anchor-link" href="#4.-C++17-fold-expressions">&#182;</a></h1><p><a href="#contents">-</a></p>
 
 </div>
 </div>
@@ -13400,7 +13352,7 @@ Out filter(In first, In last, Out out, P pred) {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>decayed to the mandane task of summing (hence its dwelling in <code>&lt;numeric&gt;</code>)</li>
+<li>decayed to the mundane task of summing (hence its dwelling in <code>&lt;numeric&gt;</code>)</li>
 </ul>
 
 </div>
@@ -13428,7 +13380,7 @@ Out filter(In first, In last, Out out, P pred) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>C++1z ammends this by adding support for fold expressions (Sutton and Smith). According to the related <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4295.html">proposal</a>:</p>
+<p>C++17 ammends this by adding support for fold expressions (Sutton and Smith). According to the related <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4295.html">proposal</a>:</p>
 <blockquote><h3 id="A-fold-expression-performs-a-fold-of-a-template-parameter-pack-([temp.variadic])-over-a-binary-operator.">A fold expression performs a fold of a template parameter pack ([temp.variadic]) over a binary operator.<a class="anchor-link" href="#A-fold-expression-performs-a-fold-of-a-template-parameter-pack-([temp.variadic])-over-a-binary-operator.">&#182;</a></h3>
 </blockquote>
 
@@ -13695,7 +13647,7 @@ Out filter(In first, In last, Out out, P pred) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="c1">// a for_each lambda</span>
+<div class="highlight"><pre><span></span><span class="c1">// an on_each lambda</span>
 
 <span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
@@ -13707,12 +13659,12 @@ Out filter(In first, In last, Out out, P pred) {
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="k">auto</span> <span class="n">ForEach</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="n">fun</span><span class="p">,</span> <span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> 
+    <span class="k">auto</span> <span class="n">on_each</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span><span class="o">&amp;&amp;</span> <span class="n">fun</span><span class="p">,</span> <span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> 
     <span class="p">{</span> 
         <span class="p">(...,</span> <span class="n">std</span><span class="o">::</span><span class="n">invoke</span><span class="p">(</span><span class="n">fw</span><span class="p">(</span><span class="n">fun</span><span class="p">),</span> <span class="n">fw</span><span class="p">(</span><span class="n">args</span><span class="p">)));</span>
     <span class="p">};</span>
 
-    <span class="n">ForEach</span><span class="p">(</span><span class="n">Printer</span><span class="p">{},</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&quot; a loaf is better than &quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot; bread&quot;</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+    <span class="n">on_each</span><span class="p">(</span><span class="n">Printer</span><span class="p">{},</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s">&quot; a loaf is better than &quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot; bread&quot;</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -13892,6 +13844,68 @@ Out filter(In first, In last, Out out, P pred) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicate-logic-in-modern-C++">Predicate logic in modern C++<a class="anchor-link" href="#Predicate-logic-in-modern-C++">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Bs</span><span class="o">&gt;</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">all_of_v</span>  <span class="o">=</span> <span class="p">(...</span> <span class="o">&amp;&amp;</span> <span class="n">Bs</span><span class="p">);</span> 
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Bs</span><span class="o">&gt;</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">any_of_v</span>  <span class="o">=</span> <span class="p">(...</span> <span class="o">||</span> <span class="n">Bs</span><span class="p">);</span> 
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Bs</span><span class="o">&gt;</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">none_of_v</span> <span class="o">=</span> <span class="o">!</span><span class="n">any_of_v</span><span class="o">&lt;</span><span class="n">Bs</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicate-logic-in-modern-C++">Predicate logic in modern C++<a class="anchor-link" href="#Predicate-logic-in-modern-C++">&#182;</a></h3><div class="highlight"><pre><span></span><span class="c1">// ------------------------------------ &quot;is there ?&quot;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">P</span><span class="p">,</span> <span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">existential_quantifier</span> <span class="o">=</span> <span class="n">any_of_v</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span> 
+
+<span class="c1">// ----------------------------------------- &quot;are all ?&quot;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">P</span><span class="p">,</span> <span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">universal_quantifier</span> <span class="o">=</span> <span class="n">all_of_v</span><span class="o">&lt;</span><span class="n">P</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Predicate-logic-in-modern-C++">Predicate logic in modern C++<a class="anchor-link" href="#Predicate-logic-in-modern-C++">&#182;</a></h3><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">using</span> <span class="n">is_small_type</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="c1">// Currying must be used for mfs of &gt;1 arguments e.g.</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">is_int</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">is_same</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">;</span> 
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">type_test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;&amp;&amp;</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> 
+    <span class="o">&lt;&lt;</span> <span class="n">existential_quantifier</span><span class="o">&lt;</span><span class="n">is_small_type</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span> 
+    <span class="o">&lt;&lt;</span> <span class="n">universal_quantifier</span><span class="o">&lt;</span><span class="n">is_small_type</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span> 
+    <span class="o">&lt;&lt;</span> <span class="n">existential_quantifier</span><span class="o">&lt;</span><span class="n">is_int</span><span class="p">,</span> <span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span> <span class="n">type_test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0f</span><span class="p">));</span> <span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1">// count results of type queries</span>
 
 <span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp"></span>
@@ -13909,8 +13923,10 @@ Out filter(In first, In last, Out out, P pred) {
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count_if</span> <span class="o">&lt;</span><span class="n">is_integral</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">float</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count_if</span><span class="o">&lt;</span><span class="n">is_integral</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">long</span><span class="o">&gt;</span> 
+         <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">count</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="kt">unsigned</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">float</span><span class="o">&gt;</span> 
+         <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -13924,69 +13940,6 @@ Out filter(In first, In last, Out out, P pred) {
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <p>Output: ['3', '1']</p>
-
-</div>
-</div>
-</div></div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="c1">// assign to a given std::array index and beyond, from a list of arguments</span>
-
-<span class="cp">#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span> 
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">A</span>
-<span class="p">{</span>
-    <span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">;</span>
-
-    <span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">...</span> <span class="n">Is</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="n">set_from_list</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">vals</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="n">set_from_list</span><span class="p">(</span>
-            <span class="n">offset</span><span class="p">,</span> <span class="n">index_sequence_for</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">{},</span> <span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">vals</span><span class="p">)...);</span> 
-    <span class="p">}</span>
-
-<span class="k">private</span><span class="o">:</span>
-    <span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="p">,</span> <span class="kt">size_t</span><span class="p">...</span> <span class="n">Is</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="n">set_from_list</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">offset</span><span class="p">,</span> <span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">Is</span><span class="p">...</span><span class="o">&gt;&amp;&amp;</span><span class="p">,</span> <span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">vals</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="p">((</span><span class="n">arr</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="n">Is</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="p">),</span> <span class="p">...);</span> 
-        <span class="c1">//             ^^    ^^^^</span>
-        <span class="c1">// two or more pack aruments can exist in the expression</span>
-        <span class="c1">// provided they are of the same **cardinality**</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">{{{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}}};</span>
-
-    <span class="c1">// the length of the list must equal the length of remaining array elements</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">set_from_list</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span> 
-
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;{%d, %d, %d, %d, %d}&quot;</span><span class="p">,</span> 
-        <span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">arr</span><span class="p">),</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">arr</span><span class="p">),</span> 
-        <span class="n">get</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">arr</span><span class="p">),</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">arr</span><span class="p">),</span> <span class="n">get</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">arr</span><span class="p">));</span> 
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>Output: ['{1, 2, 6, 6, 6}']</p>
 
 </div>
 </div>
@@ -14173,18 +14126,86 @@ Out filter(In first, In last, Out out, P pred) {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>foldl</code> and a <code>foldr</code> function that, much like the <code>Haskell</code> counterparts, can be parameterized by the type of a binary operator</p>
 <hr>
+<div class="highlight"><pre><span></span><span class="c1">// find the maximum element of a sequence</span>
+<span class="k">struct</span> <span class="n">Max</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+    <span class="k">constexpr</span> <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T1</span><span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">T2</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">lhs</span> <span class="o">&gt;</span> <span class="n">rhs</span> <span class="o">?</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lhs</span><span class="p">)</span> <span class="o">:</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">T2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">constexpr</span> <span class="k">auto</span> <span class="k">operator</span><span class="p">()()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// or throw or even return the INT_MIN etc</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="n">foldl</span><span class="o">&lt;</span><span class="n">Max</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>foldl</code> and a <code>foldr</code> function that, much like the <code>Haskell</code> counterparts, can be parameterized by the type of a binary operator</p>
+<hr>
 <div class="highlight"><pre><span></span><span class="c1">// concatenate the stringification of sequence elements</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">Stringify</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+    <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">Join</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T1</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">T2</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Stringify</span><span class="p">(</span><span class="n">lhs</span><span class="p">)</span> <span class="o">+</span> <span class="n">Stringify</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
 <span class="n">foldl</span><span class="o">&lt;</span><span class="n">Join</span><span class="o">&gt;</span><span class="p">(</span>
     <span class="mi">1</span><span class="p">,</span>  
     <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot; bird in the hand, is worth &quot;</span><span class="p">),</span> 
     <span class="mi">10</span><span class="p">,</span> 
     <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot; in the bush&quot;</span><span class="p">));</span>
+</pre></div>
 
-<span class="c1">// create a vector out of a sequence</span>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>foldl</code> and a <code>foldr</code> function that, much like the <code>Haskell</code> counterparts, can be parameterized by the type of a binary operator</p>
+<hr>
+<div class="highlight"><pre><span></span><span class="c1">// create a vector out of a sequence</span>
+<span class="k">struct</span> <span class="n">Vettore</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">ret</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">ret</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
 <span class="k">auto</span> <span class="n">k</span> <span class="o">=</span> <span class="n">foldl</span><span class="o">&lt;</span><span class="n">Vettore</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
-
-<span class="c1">// find the maximum element of a sequence</span>
-<span class="n">foldl</span><span class="o">&lt;</span><span class="n">Max</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -14205,6 +14226,181 @@ Out filter(In first, In last, Out out, P pred) {
 
 <span class="c1">// now this is possible</span>
 <span class="p">(</span><span class="n">Op</span><span class="o">&lt;</span><span class="n">Max</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="p">...);</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Function-composition">Function composition<a class="anchor-link" href="#Function-composition">&#182;</a></h3><div class="highlight"><pre><span></span>
+</pre></div>
+$$(\;f\; \circ\ g\; \circ\ y\;)\;(\;x\;)\; \equiv f\;(\;g\;(\;y\;(\;x\;)\;)\;)\;$$<div class="highlight"><pre><span></span>
+</pre></div>
+<ul>
+<li><p>That looks a lot like <strong>right folding</strong> <em>"over the function call operator"</em>. $$args\; (\;)\; \dots\;$$</p>
+</li>
+<li><p>Given a list of functions $$[\;f_1,\; f_2,\; f_3\;]$$ how Would it work in Haskel ?</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kr">let</span> <span class="n">comp</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="n">f1</span> <span class="p">[</span><span class="n">f3</span><span class="p">,</span> <span class="n">f2</span><span class="p">]</span>
+<span class="c1">-- or</span>
+<span class="kr">let</span> <span class="n">comp</span> <span class="ow">=</span> <span class="n">foldr</span> <span class="p">(</span><span class="nf">\</span><span class="n">a</span> <span class="n">b</span> <span class="ow">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">b</span><span class="p">)</span> <span class="n">f1</span> <span class="p">[</span><span class="n">f3</span><span class="p">,</span> <span class="n">f2</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Function-composition">Function composition<a class="anchor-link" href="#Function-composition">&#182;</a></h3><div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Comp</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F2</span><span class="o">&gt;</span>
+    <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">F1</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">F2</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span><span class="o">=</span><span class="p">](</span><span class="k">auto</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">lhs</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="n">args</span><span class="p">...));</span>
+            <span class="c1">//     ^^^^^^^^^^^^^^^^^</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">compose</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">fld</span><span class="o">::</span><span class="n">Op</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Op</span><span class="o">&lt;</span><span class="n">Comp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">))</span> <span class="o">+</span> <span class="p">...).</span><span class="n">give</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">f1</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">};</span>
+    <span class="k">auto</span> <span class="n">f2</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">};</span>
+    <span class="k">auto</span> <span class="n">f3</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">};</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">compose</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">)(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">cfs</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">cfs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Function-composition-(the-whole-story)">Function composition (the whole story)<a class="anchor-link" href="#Function-composition-(the-whole-story)">&#182;</a></h3><div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">using</span> <span class="n">perfect_capture_t</span> <span class="o">=</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">conditional_t</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">is_lvalue_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">remove_reference_t</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">Comp</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F2</span><span class="o">&gt;</span>
+    <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">F1</span><span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">F2</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">lhs</span> <span class="o">=</span> <span class="n">perfect_capture_t</span><span class="o">&lt;</span><span class="n">F1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lhs</span><span class="p">)),</span>
+            <span class="n">rhs</span> <span class="o">=</span> <span class="n">perfect_capture_t</span><span class="o">&lt;</span><span class="n">F2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
+        <span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">lhs</span><span class="p">(</span><span class="n">rhs</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...));</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">compose</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">fld</span><span class="o">::</span><span class="n">Op</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">Op</span><span class="o">&lt;</span><span class="n">Comp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">))</span> <span class="o">+</span> <span class="p">...).</span><span class="n">give</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Currying">Currying<a class="anchor-link" href="#Currying">&#182;</a></h3><div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Curry</span>
+<span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">F2</span><span class="o">&gt;</span>
+    <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">F1</span><span class="o">&amp;&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">F2</span><span class="o">&amp;&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">lhs</span> <span class="o">=</span> <span class="n">perfect_capture_t</span><span class="o">&lt;</span><span class="n">F1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lhs</span><span class="p">)),</span>
+            <span class="n">rhs</span> <span class="o">=</span> <span class="n">perfect_capture_t</span><span class="o">&lt;</span><span class="n">F2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">F2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
+        <span class="p">](</span><span class="k">auto</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">return</span> <span class="n">lhs</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">)...);</span>
+            <span class="c1">//     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
+<span class="k">auto</span> <span class="n">curry</span><span class="p">(</span><span class="n">Ts</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">fld</span><span class="o">::</span><span class="n">Op</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(...</span> <span class="o">+</span> <span class="n">Op</span><span class="o">&lt;</span><span class="n">Curry</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">))).</span><span class="n">give</span><span class="p">();</span>
+    <span class="c1">//      ^^^^^^^^^^^^^^ we&#39;re left folding</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">f1</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">)</span>                 <span class="p">{</span> <span class="k">return</span>     <span class="mi">2</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">};</span>
+    <span class="k">auto</span> <span class="n">f2</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="n">b</span><span class="p">,</span> <span class="k">auto</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">};</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">curry</span><span class="p">(</span><span class="n">f2</span> <span class="mi">2</span><span class="p">)(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">curry</span><span class="p">(</span><span class="n">f2</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">ccfs</span> <span class="o">=</span> <span class="n">compose</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">f1</span> <span class="n">curry</span><span class="p">(</span><span class="n">f2</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> 
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ccfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 </div>
@@ -14846,9 +15042,7 @@ call
     <span class="p">{</span>
         <span class="n">overload_set</span><span class="p">(</span><span class="n">F0</span> <span class="n">f0</span><span class="p">,</span> <span class="n">Fs</span><span class="p">...</span> <span class="n">fs</span><span class="p">)</span>
             <span class="o">:</span> <span class="n">F0</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">f0</span><span class="p">))</span>
-            <span class="p">,</span>
-
-            <span class="n">overload_set</span><span class="o">&lt;</span><span class="n">Fs</span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">fs</span><span class="p">)...)</span>
+            <span class="p">,</span> <span class="n">overload_set</span><span class="o">&lt;</span><span class="n">Fs</span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">fs</span><span class="p">)...)</span>
         <span class="p">{</span>
         <span class="p">}</span>
 
@@ -15185,262 +15379,7 @@ main = do
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="7.1-The-instantiation-complexity-problem">7.1 The instantiation complexity problem<a class="anchor-link" href="#7.1-The-instantiation-complexity-problem">&#182;</a></h2><p><small>_</small></p>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>generating types to stress test the mechanism is easy</p>
-<hr>
-<div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Max</span>
-<span class="p">{</span>
-    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T2</span><span class="o">&gt;</span>
-    <span class="k">constexpr</span> <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T1</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">T2</span> <span class="n">rhs</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="o">++</span><span class="n">use_count</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">lhs</span> <span class="o">&gt;</span> <span class="n">rhs</span> <span class="o">?</span> <span class="nl">lhs</span> <span class="p">:</span> <span class="n">rhs</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">size_t</span><span class="p">...</span> <span class="n">Is</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">stress_test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">Is</span><span class="p">...</span><span class="o">&gt;&amp;&amp;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;max of sequence = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">fld</span><span class="o">::</span><span class="n">foldr</span><span class="p">(</span><span class="n">Max</span><span class="p">{},</span> <span class="n">Is</span><span class="p">...).</span><span class="n">yield</span><span class="p">()</span>
-              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">stress_test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="mi">17</span><span class="o">&gt;</span><span class="p">{});</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>and now 218'350 characters of error message ...</p>
-<hr>
-
-<pre><code>In file included from fold_examples.cpp:1:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/array:38:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/stdexcept:39:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/string:40:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/char_traits.h:39:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/stl_algobase.h:64:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/stl_pair.h:59:
-In file included from /usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/bits/move.h:57:
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:545:14: fatal error: recursive template instantiation exceeded maximum depth of 256
-    : public __or_&lt;is_lvalue_reference&lt;_Tp&gt;,
-             ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:115:26: note: in instantiation of template class 'std::is_reference&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;' requested here
-    : public conditional&lt;_B1::value, _B1, _B2&gt;::type
-                         ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:120:14: note: in instantiation of template class 'std::__or_&lt;std::is_reference&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;, std::is_void&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt; &gt;' requested here
-    : public conditional&lt;_B1::value, _B1, __or_&lt;_B2, _B3, _Bn...&gt;&gt;::type
-             ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:148:39: note: in instantiation of template class 'std::__or_&lt;std::is_function&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;, std::is_reference&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;, std::is_void&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt; &gt;' requested here
-    : public integral_constant&lt;bool, !_Pp::value&gt;
-                                      ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:565:14: note: in instantiation of template class 'std::__not_&lt;std::__or_&lt;std::is_function&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;, std::is_reference&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;, std::is_void&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt; &gt; &gt;' requested here
-    : public __not_&lt;__or_&lt;is_function&lt;_Tp&gt;, is_reference&lt;_Tp&gt;,
-             ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:115:26: note: in instantiation of template class 'std::is_object&lt;std::_Tuple_impl&lt;16, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt; &amp;&gt;' requested here
-    : public conditional&lt;_B1::value, _B1, _B2&gt;::type
-                         ^
-/usr/lib/gcc/x86_64-linux-gnu/5.3.0/../../../../include/c++/5.3.0/type_traits:602:14: note: (skipping 247 contexts in backtrace; use -ftemplate-backtrace-limit=0 to see all)
-    : public __or_&lt;is_object&lt;_Tp&gt;, is_reference&lt;_Tp&gt;&gt;::type
-             ^
-./any_fold_lazy.h:350:11: note: in instantiation of function template specialization 'fld::detail::makeO_Om&lt;fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; , fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15&gt;' requested here
-                        return makeO_Om(std::move(lhs), std::move(acc),
-                               ^
-./any_fold_lazy.h:357:23: note: in instantiation of function template specialization 'fld::detail::operator+&lt;unsigned long &amp;&amp;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; &gt;' requested here
-                        return (fw(args) + ...);
-                                           ^
-./any_fold_lazy.h:373:24: note: in instantiation of function template specialization 'fld::detail::_foldr&lt;fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt;, fld::detail::O_x&lt;unsigned long &amp;&amp;&gt; , 0&gt;' requested here
-                    fw(fun), detail::_foldr(detail::makeO_x(fw(args))...));
-                                     ^
-fold_examples.cpp:138:44: note: in instantiation of function template specialization 'fld::foldr&lt;Max, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, 0&gt;' requested here
-        std::cout &lt;&lt; "max of sequence = " &lt;&lt; fld::foldr(Max{}, Is...).yield()
-                                                  ^
-fold_examples.cpp:165:2: note: in instantiation of function template specialization 'foo&lt;0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16&gt;' requested here
-        foo(std::make_index_sequence&lt;17&gt;{});
-        ^
-1 error generated.</code></pre>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>The problem is not make_tuple, but the move constructor of tuple</li>
-<li>The move constructor has a conditional noexcept that is implemented recursively. Therefore, for each template argument, a constant number of additional instantiations is required</li>
-<li>The implementation e.g. of is_nothrow_move_constructible in terms of is_nothrow_constructible which is implemented in terms of __is_nt_constructible and so on, for 15 instantiation levels</li>
-<li>This means that each template argument for tuple requires 15 additional instantiation levels for this check. On top of that, 9 levels are always required (constant depth)</li>
-<li>Therefore, 17 arguments require an instantiation depth of 17*15+9 == 264.</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>so this should fail as well (note I'm using clang 3.7)</p>
-<hr>
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;type_traits&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Arguments</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">Testing</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">t</span><span class="p">;</span>
-    <span class="n">Testing</span><span class="p">(</span><span class="n">Arguments</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> <span class="o">:</span> <span class="n">t</span><span class="p">{</span><span class="n">args</span><span class="p">...}</span> <span class="p">{}</span>
-<span class="p">};</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Arguments</span><span class="o">&gt;</span>
-<span class="n">Testing</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">(</span><span class="n">Arguments</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">Testing</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
-<span class="p">}</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">...</span> <span class="n">Is</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">integer_sequence</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">Is</span><span class="p">...</span><span class="o">&gt;&amp;&amp;</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">auto</span> <span class="n">t</span> <span class="o">=</span> <span class="n">create</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">Is</span><span class="o">&gt;</span><span class="p">{}...);</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_integer_sequence</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="mi">17</span><span class="o">&gt;</span><span class="p">{});</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Solution-1-:-Increase-instantiation-depth">Solution 1 : Increase instantiation depth<a class="anchor-link" href="#Solution-1-:-Increase-instantiation-depth">&#182;</a></h3><ul>
-<li>this will take its toll sooner or later</li>
-<li>the default instantiation depth for clang (256) is way low for C++11 (1024 is recommended)</li>
-<li>Visual C++ compiler has a default (non tweakable) instantiation depth value of 2048</li>
-</ul>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Solution-2-:-flatten-instantiations">Solution 2 : flatten instantiations<a class="anchor-link" href="#Solution-2-:-flatten-instantiations">&#182;</a></h3><hr>
-<div class="highlight"><pre><span></span><span class="c1">// predicate logic</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Ei</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">any_true</span> <span class="o">=</span> <span class="p">(...</span> <span class="o">||</span> <span class="n">Ei</span><span class="p">);</span> 
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Ei</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">all_true</span> <span class="o">=</span> <span class="p">(...</span> <span class="o">&amp;&amp;</span> <span class="n">Ei</span><span class="p">);</span> 
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Ei</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">all_false</span> <span class="o">=</span> <span class="o">!</span><span class="n">any_true</span><span class="o">&lt;</span><span class="n">Ei</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
-
-<span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span><span class="p">...</span> <span class="n">Ei</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">any_false</span> <span class="o">=</span> <span class="o">!</span><span class="n">all_true</span><span class="o">&lt;</span><span class="n">Ei</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
-
-<span class="c1">// variadic type traits</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">are_move_no_throw</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span>
-    <span class="kt">bool</span><span class="p">,</span> <span class="n">all_true</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_constructible</span><span class="o">&lt;</span><span class="n">Ts</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">...</span><span class="o">&gt;&gt;::</span><span class="n">value</span><span class="p">;</span>
-
-<span class="c1">// how a &quot;tuple&quot; could avoid diving too deep into instantiations</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Ts</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="n">Tuple</span>
-<span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>
-
-    <span class="k">constexpr</span> <span class="nf">Tuple</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-
-    <span class="k">template</span> <span class="o">&lt;</span><span class="n">class</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
-    <span class="k">constexpr</span> <span class="n">Tuple</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span>
-        <span class="o">:</span> <span class="n">data</span><span class="p">{</span><span class="n">args</span><span class="p">...}</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-
-    <span class="k">constexpr</span> <span class="n">Tuple</span><span class="p">(</span><span class="n">Tuple</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-
-    <span class="k">constexpr</span> <span class="nf">Tuple</span><span class="p">(</span><span class="n">Tuple</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span><span class="n">are_move_no_throw</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">)</span>
-    <span class="c1">//                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
-        <span class="o">:</span> <span class="n">Tuple</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">other</span><span class="p">),</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence_for</span><span class="o">&lt;</span><span class="n">Ts</span><span class="p">...</span><span class="o">&gt;</span><span class="p">{})</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-
-<span class="k">private</span><span class="o">:</span>
-    <span class="k">template</span> <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">...</span> <span class="n">I</span><span class="o">&gt;</span>
-    <span class="k">constexpr</span> <span class="n">Tuple</span><span class="p">(</span><span class="n">Tuple</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">I</span><span class="p">...</span><span class="o">&gt;&amp;&amp;</span><span class="p">)</span>
-        <span class="o">:</span> <span class="n">data</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">other</span><span class="p">).</span><span class="n">data</span><span class="p">)...}</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// just to provide an interface usable for testing</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">I</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="k">constexpr</span> <span class="k">decltype</span><span class="p">(</span><span class="k">auto</span><span class="p">)</span> <span class="n">Get</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">tuple</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="n">I</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tuple</span><span class="p">).</span><span class="n">data</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="this-implementation-stops-at">this implementation stops at<a class="anchor-link" href="#this-implementation-stops-at">&#182;</a></h3><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_integer_sequence</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="mi">238</span><span class="o">&gt;</span><span class="p">{});</span>
-</pre></div>
-<h3 id="due-to-type-traits-instantiations-for-a-tuple-of-238-integral_constants">due to type traits instantiations for a tuple of 238 <code>integral_constant</code>s<a class="anchor-link" href="#due-to-type-traits-instantiations-for-a-tuple-of-238-integral_constants">&#182;</a></h3>
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h3 id="quite-the-improvement-considering-we-only-changed-the-logic-in-one-type-trait-and-maintained-the-instantiation-depth">quite the improvement considering we only changed the logic in one type trait and maintained the instantiation depth<a class="anchor-link" href="#quite-the-improvement-considering-we-only-changed-the-logic-in-one-type-trait-and-maintained-the-instantiation-depth">&#182;</a></h3>
-</div>
-</div>
-</div></section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="7.2-The-reducer-as-an-argument-(no-more-sugar)---reduction-as-a-type">7.2 The reducer as an argument (no more sugar) - reduction as a type<a class="anchor-link" href="#7.2-The-reducer-as-an-argument-(no-more-sugar)---reduction-as-a-type">&#182;</a></h2>
+<h2 id="7.1-The-reducer-as-an-argument">7.1 The reducer as an argument<a class="anchor-link" href="#7.1-The-reducer-as-an-argument">&#182;</a></h2>
 </div>
 </div>
 </div></section><section>
@@ -15561,6 +15500,7 @@ fold_examples.cpp:165:2: note: in instantiation of function template specializat
         <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
     <span class="p">};</span>
 
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vp</span><span class="p">;</span> 
     <span class="n">fld</span><span class="o">::</span><span class="n">foldr</span><span class="p">(</span><span class="n">output_vf</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">back_inserter</span><span class="p">(</span><span class="n">vp</span><span class="p">)).</span><span class="n">yield</span><span class="p">();</span>
 
     <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">rel_ops</span><span class="p">;</span>
@@ -15579,7 +15519,16 @@ fold_examples.cpp:165:2: note: in instantiation of function template specializat
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="7.3-Corner-cases">7.3 Corner cases<a class="anchor-link" href="#7.3-Corner-cases">&#182;</a></h2>
+<h3 id="C++1z-constexpr-lambdas-will-allow-for-powerful-compile-time-computations-in-this-fashion">C++1z constexpr lambdas will allow for powerful compile time computations in this fashion<a class="anchor-link" href="#C++1z-constexpr-lambdas-will-allow-for-powerful-compile-time-computations-in-this-fashion">&#182;</a></h3>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="7.2-Corner-cases">7.2 Corner cases<a class="anchor-link" href="#7.2-Corner-cases">&#182;</a></h2>
 </div>
 </div>
 </div></section><section>
@@ -15657,7 +15606,7 @@ fold_examples.cpp:165:2: note: in instantiation of function template specializat
 <li>Reduce is universal </li>
 <li>Transducers are awesome</li>
 <li>Composition is aesthetically pleasing</li>
-<li>C++1z will have folds!</li>
+<li>C++17 will have folds!</li>
 <li>boost.reduce gives you folds for any callable</li>
 <li>lazy evaluation is a complex matter</li>
 </ul>
